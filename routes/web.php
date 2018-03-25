@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::any('/', [
+	'as' => 'main', 'uses' => 'MainController@index',
+]);
+
+Route::any('/rank',  [
+	'as' => 'rank', 'uses' => 'MainController@rank',
+]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('https');
